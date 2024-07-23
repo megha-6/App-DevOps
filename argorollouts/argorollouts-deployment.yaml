@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sampleapp-argorollout
+  name: sampleapp-argorollout
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sampleapp-argorollout
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: sampleapp-argorollout
+    spec:
+      containers:
+      - image: meghakadur/argocd:1.0.RELEASE-93
+        name: sampleapp-argorollout
+        ports: 
+        - containerPort: 80

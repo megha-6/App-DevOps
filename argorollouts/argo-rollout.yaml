@@ -1,0 +1,24 @@
+# argo-rollout.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: sampleapp-argorollout
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sampleapp-argorollout
+  strategy:
+    blueGreen:
+      activeService: sampleapp-active
+      previewService: sampleapp-preview
+  template:
+    metadata:
+      labels:
+        app: sampleapp-argorollout
+    spec:
+      containers:
+      - name: sampleapp-argorollout
+        image: meghakadur/argocd:1.0.RELEASE-94
+        ports:
+        - containerPort: 80
