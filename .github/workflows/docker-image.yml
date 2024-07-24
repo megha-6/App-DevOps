@@ -5,8 +5,7 @@ on:
     branches:
       - main
     paths-ignore:
-      - 'dev/**'
-      - 'argorollouts/**'
+      - 'argorollouts/argo-rollout.yaml'
 
 jobs:
   build-and-publish:
@@ -53,7 +52,7 @@ jobs:
       - uses: actions/checkout@v3
         name: changing the deployment of git repo
         with:
-          repository: 'megha-6/cnd-pune'
+          repository: 'megha-6/App-DevOps'
           token: ${{ secrets.MY_TOKEN }}
       - name: modify the image
         run: |
@@ -61,11 +60,11 @@ jobs:
           git config user.name megha-6
           pwd
           ls
-          cd dev
-          cat deployment.yaml
+          cd argorollouts
+          cat argo-rollout.yaml
           pwd
-          sed -i "s+meghakadur/argocd.*+meghakadur/argocd:1.0.RELEASE-$RUN_NUMBER+g" deployment.yaml
-          cat deployment.yaml
+          sed -i "s+meghakadur/argocd.*+meghakadur/argocd:1.0.RELEASE-$RUN_NUMBER+g" argo-rollout.yaml
+          cat argo-rollout.yaml
           git add .
           git commit -m 'Done  by Github Actions   Job changemanifest: ${{ github.run_number }}'
           git push origin main
