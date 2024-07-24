@@ -70,5 +70,5 @@ jobs:
           git push origin main
         env:
           GIT_USERNAME: ${{ secrets.GIT_USE }}R
-          GIT_PASSWORD: ${{ secrets.GIT_PWD }}
+          GIT_PASSWORD: ${{ secrets.GIT_PSW }}
           RUN_NUMBER: ${{ github.run_number }}
